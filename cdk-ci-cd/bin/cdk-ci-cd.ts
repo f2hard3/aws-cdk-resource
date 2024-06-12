@@ -6,3 +6,5 @@ import { CdkCiCdStack } from '../lib/cdk-ci-cd-stack';
 const app = new cdk.App();
 new CdkCiCdStack(app, 'CdkCiCdStack', {
 });
+
+app.synth()

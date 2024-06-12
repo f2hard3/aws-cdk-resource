@@ -9,7 +9,13 @@ export class CdkCiCdStack extends cdk.Stack {
     new CodePipeline(this, 'CiCdPipeline', {
       pipelineName: 'CiCdPipeline',
       synth: new ShellStep('Synth', {
-        input: CodePipelineSource.gitHub('f2hard3/aws-cdk-resource')
+        input: CodePipelineSource.gitHub('f2hard3/aws-cdk-resource', 'cicd-practice'),
+        commands: [
+          'cd cdk-ci-cd',
+          'npm ci',
+          'npx cdk synth'
+        ],
+        primaryOutputDirectory: 'cdk-ci-cd/cdk.out'
       })
     })
   }
