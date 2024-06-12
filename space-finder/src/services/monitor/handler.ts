@@ -1,6 +1,6 @@
 import { Context, SNSEvent } from 'aws-lambda';
 
-const webHookUrl = 'https://hooks.slack.com/services/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'
+const webHookUrl = 'https://hooks.slack.com/services/yourWebHookUrl'
 
 export async function handler(event: SNSEvent, _context: Context) {
   event.Records.forEach(async (record) => {
