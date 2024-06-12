@@ -7,7 +7,7 @@ export class PipelineStage extends Stage {
     super(scope, id, props)
 
     new LambdaStack(this, 'LambdaStack', {
-      stageName: props.stageName
+      stageName: props.stageName!
     })
   }
 }
