@@ -19,9 +19,3 @@ cdk diff
 
 cdk destroy
 ```
-
-### AWS Cognito force change password
-
-```
-aws cognito-idp admin-set-user-password --user-pool-id <user-pool-id> --username <username> --password "<password>" --permanent
-```
