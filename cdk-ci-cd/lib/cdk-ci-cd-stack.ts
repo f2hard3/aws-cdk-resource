@@ -1,12 +1,13 @@
 import * as cdk from 'aws-cdk-lib';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 import { Construct } from 'constructs';
+import { PipelineStage } from './pipeline-stage';
 
 export class CdkCiCdStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    new CodePipeline(this, 'CiCdPipeline', {
+    const pipeline = new CodePipeline(this, 'CiCdPipeline', {
       pipelineName: 'CiCdPipeline',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('f2hard3/aws-cdk-resource', 'cicd-practice'),
@@ -18,5 +19,9 @@ export class CdkCiCdStack extends cdk.Stack {
         primaryOutputDirectory: 'cdk-ci-cd/cdk.out'
       })
     })
+
+    pipeline.addStage(new PipelineStage(this, 'PipelineStage', {
+      stageName: 'pipelineStage'
+    }))
   }
-}
+} 
